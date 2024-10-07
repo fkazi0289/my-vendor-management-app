@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -200,3 +202,76 @@ export default function RequestForm() {
     </Card>
   )
 }
+
+
+/*
+import React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { format } from 'date-fns';
+
+// Initialize toast notifications
+toast.configure();
+
+interface IFormInput {
+  name: string;
+  email: string;
+  requestDate: string;
+}
+
+const RequestForm: React.FC = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    const formattedDate = format(new Date(data.requestDate), 'MM/dd/yyyy');
+    toast.success(`Form Submitted: ${data.name}, ${data.email}, ${formattedDate}`);
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '400px', margin: 'auto' }}>
+      <div>
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          {...register('name', { required: 'Name is required' })}
+        />
+        {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          {...register('email', {
+            required: 'Email is required',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Invalid email address',
+            },
+          })}
+        />
+        {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="requestDate">Request Date</label>
+        <input
+          id="requestDate"
+          type="date"
+          {...register('requestDate', { required: 'Request date is required' })}
+        />
+        {errors.requestDate && <p style={{ color: 'red' }}>{errors.requestDate.message}</p>}
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default RequestForm;
+
+*/
